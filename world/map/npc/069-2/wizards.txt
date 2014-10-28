@@ -1,4 +1,11 @@
 // Council of Ruling Wizards Room
+// Dragon egg quest states:
+// 1. quest not given yet: @Dragon_egg_quest is 0
+// 2. quest given, not solved: @Dragon_egg_quest is 1
+// 3. egg acquired, no potion: @Dragon_egg_quest is 2
+// 4. potion acquired, no egg: @Dragon_egg_quest is 3
+// 5. both egg and potion acquired, dragon not hatched: @Dragon_egg_quest is 4
+// 6. quest done: @Dragon_egg_quest is 5
 
 // manaseed
 069-2.gat,106,82,0|script|Desert Mana Seed#_M|166,
@@ -7,54 +14,187 @@
 }
 
 // 
-069-2.gat,101,85,0|script|Wizard#1|355,
+069-2.gat,101,85,0|script|Yellow Wizard#1|355,
 {
-    end;
+	if ( @Dragon_Egg_Quest == 5 ) goto L_QuestDone;
+
+	mes "Dragon eggs are really hard to transport";
+	mes "since they break easily, I heard you";
+	mes "need three people skilled in war, ";
+	mes "archery and magic to always be around."; 
+	goto L_Close;
+
+L_QuestDone:
+	mes "Did you know you can summon guild";
+	mes "pets in battle?";
+	goto L_Close;
+
+L_Close:
+	close;
 }
 
 //
-069-2.gat,94,87,0|script|Wizard#2|356,
+069-2.gat,94,87,0|script|Orange Wizard#2|356,
 {
-    end;
+	if ( @Dragon_Egg_Quest == 5 ) goto L_QuestDone;
+
+	mes "I heard that there have been dragons ";
+	mes "sighted in ... (pointing to dragon nests)";
+	goto L_Close;
+
+L_QuestDone:
+	mes "Well done, you did a very good job!";
+	goto L_Close;
+
+L_Close:
+	close;
 }
 
 //
-069-2.gat,94,93,0|script|Wizard#3|357,
+069-2.gat,94,93,0|script|Green Wizard#3|357,
 {
-    end;
+	if ( @Dragon_Egg_Quest == 5 ) goto L_QuestDone;
+
+	mes "Whenever I need potions I go to a witch,";
+	mes "they mix the finest of all.";
+	goto L_Close;
+
+L_QuestDone:
+	mes "I heard that the prices for Pink Antennas";
+	mes "are hitting the roof, I could make a";
+	mes "fortune by selling them!";
+	goto L_Close;
+
+L_Close:
+	close;
 }
 
 //
-069-2.gat,101,95,0|script|Wizard#4|358,
+069-2.gat,101,95,0|script|Purple Wizard#4|358,
 {
-    end;
+	if ( @Dragon_Egg_Quest == 5 ) goto L_QuestDone;
+
+	mes "I heard that there have been dragons ";
+	mes "sighted in ... (pointing to dragon nests)";
+	goto L_Close;
+
+L_QuestDone:
+	mes "You really did hatch that dragon, I can't";
+	mes "believe it!";
+	goto L_Close;
+
+L_Close:
+	close;
 }
 
 //
-069-2.gat,112,85,0|script|Wizard#5|359,
+069-2.gat,112,85,0|script|Pink Wizard#5|359,
 {
-    end;
+	if ( @Dragon_Egg_Quest == 5 ) goto L_QuestDone;
+
+	mes "I heard that there have been dragons ";
+	mes "sighted in ... (pointing to dragon nests)";
+	goto L_Close;
+
+L_QuestDone:
+	mes "I wish I had some hatching potion left,";
+	mes "guilds pay lots of gold for them on the";
+	mes "market";	
+	goto L_Close;
+
+L_Close:
+	close;
 }
 
 //
-069-2.gat,119,87,0|script|Wizard#6|360,
+069-2.gat,119,87,0|script|Black Wizard#6|360,
 {
-    end;
+	if ( @Dragon_Egg_Quest == 5 ) goto L_QuestDone;
+
+	mes "Dragons are quite picky while laying";
+	mes "their eggs, they never lay eggs in the";
+	mes "same nest twice.";
+	goto L_Close;
+
+L_QuestDone:
+	mes "I heard dragons are fierce in battle";
+	mes "when protecting their masters.";
+	goto L_Close;
+
+L_Close:
+	close;
 }
 
 //
-069-2.gat,119,93,0|script|Wizard#7|361,
+069-2.gat,119,93,0|script|White Wizard#7|361,
 {
-    end;
+	if ( @Dragon_Egg_Quest == 5 ) goto L_QuestDone;
+
+	mes "I heard that there have been dragons ";
+	mes "sighted in ... (pointing to dragon nests)";
+	goto L_Close;
+
+L_QuestDone:
+	mes "This dragon on the roof is really";
+	mes "upsetting me. Can't you just take ";
+	mes "it with you?";
+	goto L_Close;
+
+L_Close:
+	close;
 }
 
 //
-069-2.gat,112,95,0|script|Wizard#8|362,
+069-2.gat,112,95,0|script|Blue Wizard#8|362,
 {
-    end;
+	if ( @Dragon_Egg_Quest == 5 ) goto L_QuestDone;
+
+	mes "Dragon eggs go bad as quickly as a day.";
+	goto L_Close;
+
+L_QuestDone:
+	mes "You can make some good money by";
+	mes "selling eggs, just make sure they";
+	mes "don’t crack or go bad!";
+	goto L_Close;
+
+L_Close:
+	close;
 }
 //
 069-2.gat,106,90,0|script|Arch-Wizard#9|354,
 {
-    end;
+	mes "Hello there fellow developer,";
+	mes "what do you want me to do?";
+	mes "";
+	mes "Set quest state to: ";
+	menu
+		"1. quest not given yet", L_St1,
+		"2. quest given, not solved", L_St2,
+		"3. egg acquired, no potion", L_St3,
+		"4. potion acquired, no egg", L_St4,
+		"5. both egg and potion acquired, dragon not hatched", L_St5,
+		"6. quest done", L_St6;
+L_St1:
+	set @Dragon_Egg_Quest, 0;
+	goto L_End;
+L_St2:
+	set @Dragon_Egg_Quest, 1;
+	goto L_End;
+L_St3:
+	set @Dragon_Egg_Quest, 2;
+	goto L_End;
+L_St4:
+	set @Dragon_Egg_Quest, 3;
+	goto L_End;
+L_St5:
+	set @Dragon_Egg_Quest, 4;
+	goto L_End;
+L_St6:
+	set @Dragon_Egg_Quest, 5;
+	goto L_End;
+
+L_End:
+    close;
 }
+
